@@ -1,20 +1,22 @@
-def Distance(first, second):
+#function
+def distances(first, second):
     #seqences of same length
-    long  = 0
+    distance  = 0
 
     #compare two sequences
     for x, y in zip(first, second):
 
         #If nucleotides not same, distance + 1
         if x != y:
-            long += 1
+            distance += 1
 
     #retunring the result 
-    return long
+    return distance
 
-#must open the folder before, with this document inside 
+#open file 
 f = open("dati.txt", "r").readlines()
-f = list(map(lambda x: x.replace("\n", ""), f))
-    
+#extract sequence 
+seq = [line.strip('\n') for line in f]
+
 #giving result 
-print(Distance(f[0], f[1]))
+print(distances(seq[0], seq[1])) #are two sequences, the first and the second
