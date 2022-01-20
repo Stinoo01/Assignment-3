@@ -1,3 +1,19 @@
+#import 
+from Bio import SeqIO      
+
+#opening file                           
+f = open('dati.txt', 'r')
+#store sequences
+sequences = []    
+#fixing fasta format    
+for line in SeqIO.parse(f, 'fasta'):              
+    seq = ''                               
+    for x in line.seq:                  
+        #write sequence
+        seq += x
+    #append them                           
+    sequences.append(seq)                  
+
 #defining function for finding nucleotides 
 def function(input):
 
@@ -21,32 +37,7 @@ def function(input):
     inp_set = list(inp_set)
 
     #returning result 
-    return max(inp_set,key=len)
-
-#opening file
-with open('dati.txt', 'r') as file:
-    content = file.read()
-
-#fixing fasta format
-"""
-for the fasta format I didn't install biopython yet (my python has some problems and I hope to fix them asap)
-so I searched on the interned for some solutions 
-and I come up with this one improving and fixing something
-"""
-DNAs_number = content.count('>')
-lines = content.splitlines()
-line_number = 0 
-DNAs = []
-#skipping lines starting with > and returning all the nucleotides on the variable 
-for x in range(DNAs_number):
-    DNA = ''
-    line_number += 1
-    while lines[line_number][0] != '>':
-        DNA += lines[line_number]
-        line_number += 1
-        if line_number+1 > len(lines):
-            break
-    DNAs.append(DNA)
+    return max(inp_set, key=len)
 
 #printing result 
-print(function(DNAs))
+print(function(sequences))
